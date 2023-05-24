@@ -16,8 +16,6 @@ namespace Mapper474ROMTool
 {
     class Program
     {
-        static bool showUsage;
-
         static int Main(string[] args)
         {
             Console.WriteLine("(C) Copyright 2023 Akerasoft");
@@ -37,8 +35,6 @@ namespace Mapper474ROMTool
             string outputPrgFilename = configuration["output-prg"];
             string strMirroring = configuration["mirroring"];
             string strRegion = configuration["region"];
-
-            showUsage = false;
 
             if (mode == "combine")
             {
@@ -130,24 +126,17 @@ namespace Mapper474ROMTool
             }
             else
             {
-                showUsage = true;
+                return ShowUsage();
             }
-
-            return ShowUsage();
         }
 
         static int ShowUsage()
         {
-            if (showUsage)
-            {
-                System.Console.Out.WriteLine("Usage:");
-                System.Console.Out.WriteLine("Mapper474ROMTool --mode=combine|split [extra required args]");
-                System.Console.Out.WriteLine("Mapper474ROMTool --mode=combine --input-chr=chr.bin --input-prg=prg.bin --output=myrom.nes --submapper=0|1 --region=Ntsc|Pal|Dendy|Multiple --mirroring=Horizontal|Vertical");
-                System.Console.Out.WriteLine("Mapper474ROMTool --mode=split --input=myrom.nes --output-header=header.bin --output-chr=chr.bin --output-prg=prg.bin");
-
-                return 1;
-            }
-            return 0;
+            System.Console.Out.WriteLine("Usage:");
+            System.Console.Out.WriteLine("Mapper474ROMTool --mode=combine|split [extra required args]");
+            System.Console.Out.WriteLine("Mapper474ROMTool --mode=combine --input-chr=chr.bin --input-prg=prg.bin --output=myrom.nes --submapper=0|1 --region=Ntsc|Pal|Dendy|Multiple --mirroring=Horizontal|Vertical");
+            System.Console.Out.WriteLine("Mapper474ROMTool --mode=split --input=myrom.nes --output-header=header.bin --output-chr=chr.bin --output-prg=prg.bin");
+            return 1;
         }
     }
 }
